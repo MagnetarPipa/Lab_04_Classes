@@ -12,7 +12,6 @@ import java.time.LocalDate;
  */
 class Product {
 
-
     private String company_name = "";
 
     public void setCompanyName(String str) {
@@ -54,12 +53,6 @@ class Product {
         return amount;
     }
 
-    /**
-     * Количеств
-     * Цена
-     * Год изготовления
-     * Производитель
-     */
     public void PrintInformation() {
 
         System.out.println("Количество:" + getAmount() + " Цена:" + getPrice() + " Год изготовления:" + getYearOfProduction() + " Производитель:" + getCompanyName());
@@ -96,10 +89,6 @@ class Footballer {
     public LocalDate getBirthDate() {
         return birthdate;
     }
-
-    //    public LocalDate getBirthDate(LocalDate localDate) {
-    //        return birthdate;
-    //    }
 
     private String role = "";
 
@@ -214,9 +203,9 @@ public class Main {
         System.out.println("----Второе Задание----");
 
         Footballer[] footballers = new Footballer[5];
-        String[] names = new String[5];//Взял наиболее часто встречающиеся
+        String[] names = new String[5];
         names[0] = "Лавренцов";
-        names[1] = "Вирт";
+        names[1] = "Прокопенко";
         names[2] = "Шовковский";
         names[3] = "Руденко";
         names[4] = "Кернозенко";
@@ -238,7 +227,7 @@ public class Main {
 
             footballers[i] = new Footballer();
             footballers[i].setSurname(names[(int) (Math.random() * 5)]);
-            footballers[i].setBirthDate(LocalDate.now().minusYears(rand_year));//Большая часть самых старых футболистов около 40,но вроде была информация об 50
+            footballers[i].setBirthDate(LocalDate.now().minusYears(rand_year));
             footballers[i].setRole(roles[(int) (Math.random() * 4)]);
             footballers[i].setAmount_of_games(1 + (int) (Math.random() * 20));
             footballers[i].setAmount_of_goals(1 + (int) (Math.random() * 6));
