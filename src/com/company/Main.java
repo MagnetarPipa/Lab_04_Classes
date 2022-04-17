@@ -137,14 +137,14 @@ class Footballer {
         this.birth_place = place;
     }
 
-    public String getBirth_place(){
+    public String getBirth_place() {
         return birth_place;
     }
 
 
     public void PrintInformation() {
 
-        System.out.println("Фамилия:" + getSurname() + " Дата рождения:" + getBirthDate() + " Амплуа:" + getRole() + " Количество игр:" + getAmount_of_games() + " Количество забитых мячей:" + getAmount_of_goals() + "Место рождения:"+getBirth_place());
+        System.out.println("Фамилия:" + getSurname() + " Дата рождения:" + getBirthDate() + " Амплуа:" + getRole() + " Количество игр:" + getAmount_of_games() + " Количество забитых мячей:" + getAmount_of_goals() + " Место рождения:" + getBirth_place());
     }
 
 }
@@ -156,7 +156,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //task01();
+        task01();
         task02();
     }
 
@@ -170,9 +170,9 @@ public class Main {
 
         Product[] products = new Product[5];
         String[] company_names = new String[5];
-        company_names[0] = "Muttela";
-        company_names[1] = "Koka Cola";
-        company_names[2] = "Odidas";
+        company_names[0] = "Morgan industries";
+        company_names[1] = "Centauri monopoly";
+        company_names[2] = "Sunlight inc.";
         company_names[3] = "TerraMars inc.";
         company_names[4] = "Liandri Corporations";
 
@@ -182,8 +182,7 @@ public class Main {
             products[i] = new Product();
             products[i].setCompanyName(company_names[(int) (Math.random() * 5)]);
             products[i].setPrice(1 + (int) (Math.random() * 3000));
-            products[i].setYear0fProduction(1999 + (int) (Math.random() * 2026));
-
+            products[i].setYear0fProduction(1999 + (int) (Math.random() * 100));
             count++;
 
         }
@@ -212,13 +211,15 @@ public class Main {
      */
     private static void task02() {
 
+        System.out.println("----Второе Задание----");
+
         Footballer[] footballers = new Footballer[5];
         String[] names = new String[5];//Взял наиболее часто встречающиеся
-        names[0] = "Liam";
-        names[1] = "Noah";
-        names[2] = "Oliver";
-        names[3] = "Elijah";
-        names[4] = "William";
+        names[0] = "Лавренцов";
+        names[1] = "Вирт";
+        names[2] = "Шовковский";
+        names[3] = "Руденко";
+        names[4] = "Кернозенко";
 
         String[] birth_places = new String[3];
         birth_places[0] = "Прага";
@@ -233,42 +234,30 @@ public class Main {
 
         for (int i = 0; i < footballers.length; i++) {
 
-           long rand_year= (long) (Math.random() * 30);
+            long rand_year = (long) (Math.random() * 30);
 
             footballers[i] = new Footballer();
             footballers[i].setSurname(names[(int) (Math.random() * 5)]);
             footballers[i].setBirthDate(LocalDate.now().minusYears(rand_year));//Большая часть самых старых футболистов около 40,но вроде была информация об 50
             footballers[i].setRole(roles[(int) (Math.random() * 4)]);
             footballers[i].setAmount_of_games(1 + (int) (Math.random() * 20));
-            footballers[i].setAmount_of_goals((Math.random() * 5));
+            footballers[i].setAmount_of_goals(1 + (int) (Math.random() * 6));
             footballers[i].setBirth_place(birth_places[(int) (Math.random() * 3)]);
 
-           // System.out.println();footballers[i].PrintInformation();
+            // System.out.println("Гол:"+ footballers[i].getAmount_of_goals());
+            double sum = (double) footballers[i].getAmount_of_goals() / footballers[i].getAmount_of_games();
+            // System.out.println("Коэффициент голов:"+sum);
+            if (LocalDate.now().getYear() - footballers[i].getBirthDate().getYear() > 20 && sum > 0.4) {
 
-            if (LocalDate.now().getYear()-footballers[i].getBirthDate().getYear() > 20) {
-
-
-                System.out.print("Информация о футболлситах страше 20: ");
+                System.out.print("Информация о футболисте страше 20 и у которого среднее значение голов больше чем 0.4--");
                 footballers[i].PrintInformation();
 
+            } else {
 
-            }
+                System.out.println("Этот футболист моложе 20 или среднее значение голов меньше 0.4");
+            }//выпадение с нужными параметрами не частое
 
         }
-
-        //        products[i] = new Product();
-        //        products[i].setCompanyName(company_names[(int) (Math.random() * 5)]);
-        //        products[i].setPrice(1 + (int) (Math.random() * 3000));
-        //        products[i].setYear0fProduction(1999 + (int) (Math.random() * 2026));
-        /**
-         * Фамилия
-         * Дата рождения
-         * Амплуа
-         * Количество игр
-         * Количество забитых мячей
-         * Место рождения
-         */
-
 
     }
 
