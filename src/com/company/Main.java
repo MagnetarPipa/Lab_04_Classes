@@ -2,6 +2,8 @@ package com.company;
 
 import java.util.Scanner;
 
+import java.time.LocalDate;
+
 /**
  * Количеств
  * Цена
@@ -85,15 +87,19 @@ class Footballer {
         return surname;
     }
 
-    private int birthdate = 0;
+    private LocalDate birthdate;
 
-    public void setBirthDate(int b_date) {
-        this.birthdate = b_date;
+    public void setBirthDate(LocalDate date) {
+        this.birthdate = date;
     }
 
-    public int getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthdate;
     }
+
+    //    public LocalDate getBirthDate(LocalDate localDate) {
+    //        return birthdate;
+    //    }
 
     private String role = "";
 
@@ -115,13 +121,13 @@ class Footballer {
         return amount_of_games;
     }
 
-    private float amount_of_goals = 0;
+    private double amount_of_goals = 0;
 
-    public void setAmount_of_goals(float goals) {
+    public void setAmount_of_goals(double goals) {
         this.amount_of_goals = goals;
     }
 
-    public float getAmount_of_goals() {
+    public double getAmount_of_goals() {
         return amount_of_goals;
     }
 
@@ -131,9 +137,16 @@ class Footballer {
         this.birth_place = place;
     }
 
-    public int getBirthdate() {
-        return birthdate;
+    public String getBirth_place(){
+        return birth_place;
     }
+
+
+    public void PrintInformation() {
+
+        System.out.println("Фамилия:" + getSurname() + " Дата рождения:" + getBirthDate() + " Амплуа:" + getRole() + " Количество игр:" + getAmount_of_games() + " Количество забитых мячей:" + getAmount_of_goals() + "Место рождения:"+getBirth_place());
+    }
+
 }
 
 
@@ -143,7 +156,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        task01();
+        //task01();
         task02();
     }
 
@@ -173,7 +186,6 @@ public class Main {
 
             count++;
 
-
         }
         for (int i = 0; i < products.length; i++) {
             products[i].setAmount(count);
@@ -202,14 +214,60 @@ public class Main {
 
         Footballer[] footballers = new Footballer[5];
         String[] names = new String[5];//Взял наиболее часто встречающиеся
-        names[0]="Liam";
-        names[1]="Noah";
-        names[2]="Oliver";
-        names[3]="Elijah";
-        names[4]="William";
+        names[0] = "Liam";
+        names[1] = "Noah";
+        names[2] = "Oliver";
+        names[3] = "Elijah";
+        names[4] = "William";
+
+        String[] birth_places = new String[3];
+        birth_places[0] = "Прага";
+        birth_places[1] = "Киев";
+        birth_places[2] = "Одесса";
+
+        String[] roles = new String[4];
+        roles[0] = "Нападающие";
+        roles[1] = "Полузащитники";
+        roles[2] = "Защитники";
+        roles[3] = "Вратарь";
+
+        for (int i = 0; i < footballers.length; i++) {
+
+           long rand_year= (long) (Math.random() * 30);
+
+            footballers[i] = new Footballer();
+            footballers[i].setSurname(names[(int) (Math.random() * 5)]);
+            footballers[i].setBirthDate(LocalDate.now().minusYears(rand_year));//Большая часть самых старых футболистов около 40,но вроде была информация об 50
+            footballers[i].setRole(roles[(int) (Math.random() * 4)]);
+            footballers[i].setAmount_of_games(1 + (int) (Math.random() * 20));
+            footballers[i].setAmount_of_goals((Math.random() * 5));
+            footballers[i].setBirth_place(birth_places[(int) (Math.random() * 3)]);
+
+           // System.out.println();footballers[i].PrintInformation();
+
+            if (LocalDate.now().getYear()-footballers[i].getBirthDate().getYear() > 20) {
 
 
+                System.out.print("Информация о футболлситах страше 20: ");
+                footballers[i].PrintInformation();
 
+
+            }
+
+        }
+
+        //        products[i] = new Product();
+        //        products[i].setCompanyName(company_names[(int) (Math.random() * 5)]);
+        //        products[i].setPrice(1 + (int) (Math.random() * 3000));
+        //        products[i].setYear0fProduction(1999 + (int) (Math.random() * 2026));
+        /**
+         * Фамилия
+         * Дата рождения
+         * Амплуа
+         * Количество игр
+         * Количество забитых мячей
+         * Место рождения
+         */
 
 
     }
