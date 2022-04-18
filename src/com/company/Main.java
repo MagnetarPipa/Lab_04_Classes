@@ -13,10 +13,19 @@ import java.time.LocalDate;
 
 class Product {
 
-    private String company_name = "";
-    private int year_of_production = 0;
-    private int price = 0;
+    private String company_name;
+    private int year_of_production;
+    private int price;
     private int amount;
+
+    public Product() {
+
+        this.company_name = "";
+        this.year_of_production = 0;
+        this.price = 0;
+        this.amount = 0;
+
+    }
 
     public String getCompanyName() {
         return company_name;
@@ -67,12 +76,20 @@ class Product {
  */
 class Footballer {
 
-    private String surname = "";
+    private String surname;
     private LocalDate birthdate;
-    private String role = "";
-    private int amount_of_games = 0;
-    private double amount_of_goals = 0;
-    private String birth_place = "";
+    private String role;
+    private int amount_of_games;
+    private double amount_of_goals;
+    private String birth_place;
+
+    public Footballer() {
+        this.surname = "";
+        this.role = "";
+        this.amount_of_games = 0;
+        this.amount_of_goals = 0;
+        this.birth_place = "";
+    }
 
     public String getSurname() {
         return surname;
@@ -149,14 +166,12 @@ public class Main {
         System.out.println("----Первое задание----");
 
         Product[] products = new Product[5];
-       // String[] company_names = { "Morgan industries","Morgan industries","Centauri monopoly","Sunlight inc.","TerraMars inc.", "Liandri Corporations"};
 
         int count = 0;
         for (int i = 0; i < products.length; i++) {
 
             products[i] = new Product();
-          //  products[i].setCompanyName(company_names[(int) (Math.random() * company_names.length)]);
-            products[i].setCompanyName(DataBase.getRandomCompany());
+            products[i].setCompanyName(StringDataBase.getRandomCompany());
             products[i].setPrice(1 + (int) (Math.random() * 3000));
             products[i].setYear0fProduction(1999 + (int) (Math.random() * 100));
             count++;
@@ -190,32 +205,29 @@ public class Main {
         System.out.println("----Второе Задание----");
 
         Footballer[] footballers = new Footballer[5];
-        String[] names = {"Лавренцов","Прокопенко","Шовковский","Руденко","Кернозенко"};
-
-        String[] birth_places = { "Прага","Киев","Одесса"};
-
-        String[] roles = {"Нападающие","Полузащитники","Защитники","Вратарь"};
 
         for (int i = 0; i < footballers.length; i++) {
 
             long rand_year = (long) (Math.random() * 30);
 
             footballers[i] = new Footballer();
-            footballers[i].setSurname(names[(int) (Math.random() * names.length)]);
+            footballers[i].setSurname(StringDataBase.getRandomName());
             footballers[i].setBirthDate(LocalDate.now().minusYears(rand_year));
-            footballers[i].setRole(roles[(int) (Math.random() * roles.length)]);
+            footballers[i].setRole(StringDataBase.getRandomRole());
             footballers[i].setAmount_of_games(1 + (int) (Math.random() * 20));
             footballers[i].setAmount_of_goals(1 + (int) (Math.random() * 6));
-            footballers[i].setBirth_place(birth_places[(int) (Math.random() * birth_places.length)]);
+            footballers[i].setBirth_place(StringDataBase.getRandomPlace());
 
 
             double sum = (double) footballers[i].getAmount_of_goals() / footballers[i].getAmount_of_games();
 
             if (LocalDate.now().getYear() - footballers[i].getBirthDate().getYear() > 20 && sum > 0.4) {
 
-
-                System.out.print("Информация о футболисте страше 20 и у которого среднее значение голов больше чем 0.4--");
-                footballers[i].PrintInformation();
+                if(footballers[i].getBirthDate().getMonthValue()*100+footballers[i].getBirthDate().getDayOfMonth()+1<=LocalDate.now().getMonthValue()*100+LocalDate.now().getDayOfMonth()+1)
+                {
+                    System.out.print("Информация о футболисте страше 20 и у которого среднее значение голов больше чем 0.4--");
+                    footballers[i].PrintInformation();
+                }
 
             } else {
 
