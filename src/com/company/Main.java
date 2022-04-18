@@ -10,20 +10,21 @@ import java.time.LocalDate;
  * Год изготовления
  * Производитель
  */
+
 class Product {
 
     private String company_name = "";
-
-    public void setCompanyName(String str) {
-        this.company_name = str;
-    }
+    private int year_of_production = 0;
+    private int price = 0;
+    private int amount;
 
     public String getCompanyName() {
         return company_name;
     }
 
-
-    private int year_of_production = 0;
+    public void setCompanyName(String str) {
+        this.company_name = str;
+    }
 
     public void setYear0fProduction(int year) {
         this.year_of_production = year;
@@ -33,24 +34,20 @@ class Product {
         return year_of_production;
     }
 
-    private int price = 0;
+    public int getPrice() {
+        return price;
+    }
 
     public void setPrice(int price) {
         this.price = price;
     }
 
-    public int getPrice() {
-        return price;
+    public int getAmount() {
+        return amount;
     }
-
-    private int amount;
 
     public void setAmount(int count) {
         this.amount = count;
-    }
-
-    public int getAmount() {
-        return amount;
     }
 
     public void PrintInformation() {
@@ -71,65 +68,59 @@ class Product {
 class Footballer {
 
     private String surname = "";
-
-    public void setSurname(String str) {
-        this.surname = str;
-    }
+    private LocalDate birthdate;
+    private String role = "";
+    private int amount_of_games = 0;
+    private double amount_of_goals = 0;
+    private String birth_place = "";
 
     public String getSurname() {
         return surname;
     }
 
-    private LocalDate birthdate;
-
-    public void setBirthDate(LocalDate date) {
-        this.birthdate = date;
+    public void setSurname(String str) {
+        this.surname = str;
     }
 
     public LocalDate getBirthDate() {
         return birthdate;
     }
 
-    private String role = "";
-
-    public void setRole(String str) {
-        this.role = str;
+    public void setBirthDate(LocalDate date) {
+        this.birthdate = date;
     }
 
     public String getRole() {
         return role;
     }
 
-    private int amount_of_games = 0;
-
-    public void setAmount_of_games(int amount) {
-        this.amount_of_games = amount;
+    public void setRole(String str) {
+        this.role = str;
     }
 
     public int getAmount_of_games() {
         return amount_of_games;
     }
 
-    private double amount_of_goals = 0;
-
-    public void setAmount_of_goals(double goals) {
-        this.amount_of_goals = goals;
+    public void setAmount_of_games(int amount) {
+        this.amount_of_games = amount;
     }
 
     public double getAmount_of_goals() {
         return amount_of_goals;
     }
 
-    private String birth_place = "";
-
-    public void setBirth_place(String place) {
-        this.birth_place = place;
+    public void setAmount_of_goals(double goals) {
+        this.amount_of_goals = goals;
     }
 
     public String getBirth_place() {
         return birth_place;
     }
 
+    public void setBirth_place(String place) {
+        this.birth_place = place;
+    }
 
     public void PrintInformation() {
 
@@ -158,18 +149,14 @@ public class Main {
         System.out.println("----Первое задание----");
 
         Product[] products = new Product[5];
-        String[] company_names = new String[5];
-        company_names[0] = "Morgan industries";
-        company_names[1] = "Centauri monopoly";
-        company_names[2] = "Sunlight inc.";
-        company_names[3] = "TerraMars inc.";
-        company_names[4] = "Liandri Corporations";
+       // String[] company_names = { "Morgan industries","Morgan industries","Centauri monopoly","Sunlight inc.","TerraMars inc.", "Liandri Corporations"};
 
         int count = 0;
         for (int i = 0; i < products.length; i++) {
 
             products[i] = new Product();
-            products[i].setCompanyName(company_names[(int) (Math.random() * 5)]);
+          //  products[i].setCompanyName(company_names[(int) (Math.random() * company_names.length)]);
+            products[i].setCompanyName(DataBase.getRandomCompany());
             products[i].setPrice(1 + (int) (Math.random() * 3000));
             products[i].setYear0fProduction(1999 + (int) (Math.random() * 100));
             count++;
@@ -203,40 +190,29 @@ public class Main {
         System.out.println("----Второе Задание----");
 
         Footballer[] footballers = new Footballer[5];
-        String[] names = new String[5];
-        names[0] = "Лавренцов";
-        names[1] = "Прокопенко";
-        names[2] = "Шовковский";
-        names[3] = "Руденко";
-        names[4] = "Кернозенко";
+        String[] names = {"Лавренцов","Прокопенко","Шовковский","Руденко","Кернозенко"};
 
-        String[] birth_places = new String[3];
-        birth_places[0] = "Прага";
-        birth_places[1] = "Киев";
-        birth_places[2] = "Одесса";
+        String[] birth_places = { "Прага","Киев","Одесса"};
 
-        String[] roles = new String[4];
-        roles[0] = "Нападающие";
-        roles[1] = "Полузащитники";
-        roles[2] = "Защитники";
-        roles[3] = "Вратарь";
+        String[] roles = {"Нападающие","Полузащитники","Защитники","Вратарь"};
 
         for (int i = 0; i < footballers.length; i++) {
 
             long rand_year = (long) (Math.random() * 30);
 
             footballers[i] = new Footballer();
-            footballers[i].setSurname(names[(int) (Math.random() * 5)]);
+            footballers[i].setSurname(names[(int) (Math.random() * names.length)]);
             footballers[i].setBirthDate(LocalDate.now().minusYears(rand_year));
-            footballers[i].setRole(roles[(int) (Math.random() * 4)]);
+            footballers[i].setRole(roles[(int) (Math.random() * roles.length)]);
             footballers[i].setAmount_of_games(1 + (int) (Math.random() * 20));
             footballers[i].setAmount_of_goals(1 + (int) (Math.random() * 6));
-            footballers[i].setBirth_place(birth_places[(int) (Math.random() * 3)]);
+            footballers[i].setBirth_place(birth_places[(int) (Math.random() * birth_places.length)]);
 
-            // System.out.println("Гол:"+ footballers[i].getAmount_of_goals());
+
             double sum = (double) footballers[i].getAmount_of_goals() / footballers[i].getAmount_of_games();
-            // System.out.println("Коэффициент голов:"+sum);
+
             if (LocalDate.now().getYear() - footballers[i].getBirthDate().getYear() > 20 && sum > 0.4) {
+
 
                 System.out.print("Информация о футболисте страше 20 и у которого среднее значение голов больше чем 0.4--");
                 footballers[i].PrintInformation();
