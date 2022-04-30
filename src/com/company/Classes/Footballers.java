@@ -1,7 +1,6 @@
 package com.company.Classes;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 
 /**
  * Вывести сведения о футболистах, старших 20-ти лет и
@@ -13,14 +12,31 @@ public class Footballers {
     private Footballer[] footballers;
     private int currentFootballerNumber;
 
-//
-//    public Footballer findAgeAbove20() {
-//        Footballer footballer1 = footballers[0];
-//
-//
-//
-//        return footballer1;
-//    }
+
+   public String findAgeAbove20() {
+
+        String result=""+System.lineSeparator();
+
+        for (final Footballer footballer:footballers){
+
+            double sum = (double) footballer.getAmountOfGoals() / footballer.getAmountOfGames();
+            if (LocalDate.now().getYear() - footballer.getBirthDate().getYear() > 20 && sum > 0.4) {
+
+                if(footballer.getBirthDate().getMonthValue()*100+footballer.getBirthDate().getDayOfMonth()+1<=LocalDate.now().getMonthValue()*100+LocalDate.now().getDayOfMonth()+1)
+                {
+
+                    result+=footballer+System.lineSeparator();
+                }
+
+            } else {
+
+            }
+        }
+
+
+
+       return result;
+   }
 
     public Footballers(final int footballersNumber) {
         this.footballers = new Footballer[footballersNumber];
@@ -36,35 +52,15 @@ public class Footballers {
     @Override
     public String toString() {
 
-        // Footballer footballer = footballers[0];
         String result = "Footballers: " + System.lineSeparator();
 
         for (final Footballer footballer : footballers) {
-            //if (footballer.getBirthdate().isBefore(footballer1.getBirthdate())) footballer1 = footballer;
-            if ((LocalDate.now().getYear() - footballer.getBirthdate().getYear()) > 20) {
 
                 result += footballer + System.lineSeparator();
-            }
 
         }
 
         return result;
     }
-/*
-    public String toString() {
-        int count = 0;
 
-        String result = "Products: " + System.lineSeparator();
-
-        for (final Product product : products) {
-            result += product + System.lineSeparator();
-            count++;
-        }
-
-
-        return result + "Amount of products=" + count;
-    }
-
-
- */
 }

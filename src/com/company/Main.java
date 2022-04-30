@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        task01();
+        //task01();
         task02();
     }
 
@@ -60,10 +60,10 @@ public class Main {
         Footballer footballer3 = new Footballer("Руденко", SystemRole.Midfielder, 7, 1, "Киев");
         Footballer footballer4 = new Footballer("Кернозенко", SystemRole.Goalkeeper, 7, 0, "Киев");
 
-        System.out.println(footballer1);
-        System.out.println(footballer2);
-        System.out.println(footballer3);
-        System.out.println(footballer4);
+//        System.out.println(footballer1);
+//        System.out.println(footballer2);
+//        System.out.println(footballer3);
+//        System.out.println(footballer4);
 
         System.out.println();
 
@@ -76,7 +76,9 @@ public class Main {
 
         System.out.println(footballers);
 
+        System.out.println();
 
+        System.out.println("Информация о футболисте страше 20 и у которого среднее значение голов больше чем 0.4: " + footballers.findAgeAbove20());
 
 
 

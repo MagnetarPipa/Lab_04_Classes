@@ -1,7 +1,6 @@
 package com.company.Classes;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * Фамилия
@@ -45,7 +44,7 @@ public class Footballer {
         this.surname = surname.strip();
     }
 
-    public LocalDate getBirthdate() {
+    public LocalDate getBirthDate() {
         return birthdate;
     }
 
